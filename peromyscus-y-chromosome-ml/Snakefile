@@ -1,0 +1,22 @@
+"""Top-level Snakemake entrypoint for the Y-chromosome discovery pipeline.
+
+See README.md for usage. Config lives in config/config.yaml.
+"""
+configfile: "config/config.yaml"
+
+HAPS = ["hap1", "hap2"]
+
+include: "workflow/rules/download.smk"
+include: "workflow/rules/assembly.smk"
+include: "workflow/rules/features.smk"
+include: "workflow/rules/classify.smk"
+include: "workflow/rules/annotate.smk"
+
+
+rule all:
+    input:
+        expand(
+            "{annotation_dir}/{hap}_braker/braker.gff3",
+            annotation_dir=config["paths"]["annotation_dir"],
+            hap=HAPS,
+        ),

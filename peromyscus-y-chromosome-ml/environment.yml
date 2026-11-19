@@ -1,0 +1,23 @@
+name: y-discover-ml
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - snakemake-minimal>=8
+  - scikit-learn>=1.4
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - biopython
+  - pysam
+  - samtools
+  - minimap2
+  - sra-tools
+  - pytest
+  - black
+  - flake8
+  - pip
+  - pip:
+      - xgboost

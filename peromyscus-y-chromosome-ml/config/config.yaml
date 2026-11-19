@@ -1,0 +1,60 @@
+# Example config — replace accessions/paths with your own target species' data.
+
+target_species: "Peromyscus_maniculatus_bairdii_x_nubiterrae_F1"
+
+reads:
+  hifi_accessions:
+    - SRR32869429
+    - SRR32869428
+    - SRR32869427
+    - SRR32869426
+    - SRR32869425
+  hic_accession: SRR32859500
+  female_comparison_accessions:   # short-read female samples for the female k-mer set
+    - SRR20308999
+    - SRR20309001
+    - SRR20309004
+
+rnaseq_evidence_accessions:        # testis RNA-seq used as transcript evidence for annotation
+  - SRR5130415
+  - SRR29290885
+  - SRR29286253
+  - SRR27698392
+  - SRR27698391
+  - SRR27698390
+  - SRR8587279
+  - SRR4291404
+  - SRR4291405
+
+assembly:
+  hifiasm_threads: 32
+  hifiasm_mem_gb: 180
+
+features:
+  window_size_bp: 10000
+  kmer_size: 25
+
+classifier:
+  model_type: "gradient_boosting"   # or "xgboost"
+  n_estimators: 300
+  max_depth: 4
+  learning_rate: 0.05
+  cv_folds: 5
+  random_state: 42
+
+known_y_genes:        # used for homology cross-validation of classifier calls
+  - Sry
+  - Zfy1
+  - Zfy2
+  - Ddx3y
+  - Uty
+  - Eif2s3y
+  - Usp9y
+  - Kdm5d
+
+paths:
+  raw_reads_dir: "data/raw"
+  assembly_dir: "results/assembly"
+  features_dir: "results/features"
+  model_dir: "results/model"
+  annotation_dir: "results/annotation"
